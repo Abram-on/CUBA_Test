@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.test.web.screens.consumer">
+    <data>
+        <instance id="consumerDc"
+                  class="com.company.test.entity.Consumer"
+                  view="consumer-view">
+            <loader/>
+        </instance>
+        <collection id="metersDc" class="com.company.test.entity.Meter" view="_minimal">
+            <loader id="metersLc">
+                <query>
+                    <![CDATA[select e from test_Meter e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="consumerDc">
+            <column width="250px">
+                <lookupPickerField id="meterField" optionsContainer="metersDc" property="meter">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="open" type="picker_open"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </lookupPickerField>
+                <textField id="streetNameField" property="streetName"/>
+                <textField id="houseNumField" property="houseNum"/>
+                <textField id="apartmentNumField" property="apartmentNum"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

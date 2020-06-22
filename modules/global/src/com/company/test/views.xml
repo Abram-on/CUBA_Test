@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="test_Meter" name="meter-view" extends="_local">
+        <property name="user" view="_minimal"/>
+    </view>
+    <view entity="test_Consumer" name="consumer-view" extends="_local">
+        <property name="meter" fetch="JOIN" view="_base"/>
+    </view>
+</views>

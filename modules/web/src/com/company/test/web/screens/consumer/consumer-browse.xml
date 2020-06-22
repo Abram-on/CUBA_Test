@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://browseCaption"
+        focusComponent="consumersTable"
+        messagesPack="com.company.test.web.screens.consumer">
+    <data readOnly="true">
+        <collection id="consumersDc"
+                    class="com.company.test.entity.Consumer"
+                    view="consumer-view">
+            <loader id="consumersDl">
+                <query>
+                    <![CDATA[select e from test_Consumer e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="consumersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="consumersTable"
+                dataLoader="consumersDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="consumersTable"
+                    width="100%"
+                    dataContainer="consumersDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="meter"/>
+                <column id="streetName"/>
+                <column id="houseNum"/>
+                <column id="apartmentNum"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="consumersTable.create"/>
+                <button id="editBtn" action="consumersTable.edit"/>
+                <button id="removeBtn" action="consumersTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <label id="meterIndication" stylename="h4 colored bold" width="100%" property="color=&quot;RED&quot;"/>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

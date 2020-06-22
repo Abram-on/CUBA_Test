@@ -1,0 +1,1 @@
+drop table if exists TEST_CONSUMER__U53291 cascade ;
